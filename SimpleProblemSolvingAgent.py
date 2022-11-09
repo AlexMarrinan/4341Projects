@@ -1,7 +1,9 @@
 import functools
 import heapq
 
-from utils import *
+def is_in(elt, seq):
+    """Similar to (elt in seq), but compares with 'is', not '=='."""
+    return any(x is elt for x in seq)
 class PriorityQueue:
     """A Queue in which the minimum (or maximum) element (as determined by f and order) is returned first.
     If order is 'min', the item with minimum f(x) is
@@ -76,7 +78,54 @@ def memoize(fn, slot=None, maxsize=32):
             return fn(*args)
 
     return memoized_fn
+class Problem:
+    """The abstract class for a formal problem. You should subclass
+    this and implement the methods actions and result, and possibly
+    __init__, goal_test, and path_cost. Then you will create instances
+    of your subclass and solve them with the various search functions."""
 
+    def __init__(self, initial, goal=None):
+        """The constructor specifies the initial state, and possibly a goal
+        state, if there is a unique goal. Your subclass's constructor can add
+        other arguments."""
+        self.initial = initial
+        self.goal = goal
+
+    def actions(self, state):
+        """Return the actions that can be executed in the given
+        state. The result would typically be a list, but if there are
+        many actions, consider yielding them one at a time in an
+        iterator, rather than building them all at once."""
+        raise NotImplementedError
+
+    def result(self, state, action):
+        """Return the state that results from executing the given
+        action in the given state. The action must be one of
+        self.actions(state)."""
+        raise NotImplementedError
+
+    def goal_test(self, state):
+        """Return True if the state is a goal. The default method compares the
+        state to self.goal or checks for state in self.goal if it is a
+        list, as specified in the constructor. Override this method if
+        checking against a single self.goal is not enough."""
+        if isinstance(self.goal, list):
+            return is_in(state, self.goal)
+        else:
+            return state == self.goal
+
+    def path_cost(self, c, state1, action, state2):
+        """Return the cost of a solution path that arrives at state2 from
+        state1 via action, assuming cost c to get up to state1. If the problem
+        is such that the path doesn't matter, this function will only look at
+        state2. If the path does matter, it will consider c and maybe state1
+        and action. The default method costs 1 for every step in the path."""
+        return c + 1
+
+    def value(self, state):
+        """For optimization problems, each state has a value. Hill Climbing
+        and related algorithms try to maximize this value."""
+        raise NotImplementedError
 class Node:
     """A node in a search tree. Contains a pointer to the parent (the node
     that this is a successor of) and to the actual state for this node. Note
@@ -200,28 +249,6 @@ def UndirectedGraph(graph_dict=None):
     """Build a Graph where every edge (including future ones) goes both ways."""
     return Graph(graph_dict=graph_dict, directed=False)
 
-romania_map = UndirectedGraph(dict(
-    Arad=dict(Zerind=75, Sibiu=140, Timisoara=118),
-    Bucharest=dict(Urziceni=85, Pitesti=101, Giurgiu=90, Fagaras=211),
-    Craiova=dict(Drobeta=120, Rimnicu=146, Pitesti=138),
-    Drobeta=dict(Mehadia=75),
-    Eforie=dict(Hirsova=86),
-    Fagaras=dict(Sibiu=99),
-    Hirsova=dict(Urziceni=98),
-    Iasi=dict(Vaslui=92, Neamt=87),
-    Lugoj=dict(Timisoara=111, Mehadia=70),
-    Oradea=dict(Zerind=71, Sibiu=151),
-    Pitesti=dict(Rimnicu=97),
-    Rimnicu=dict(Sibiu=80),
-    Urziceni=dict(Vaslui=142)))
-romania_map.locations = dict(
-    Arad=(91, 492), Bucharest=(400, 327), Craiova=(253, 288),
-    Drobeta=(165, 299), Eforie=(562, 293), Fagaras=(305, 449),
-    Giurgiu=(375, 270), Hirsova=(534, 350), Iasi=(473, 506),
-    Lugoj=(165, 379), Mehadia=(168, 339), Neamt=(406, 537),
-    Oradea=(131, 571), Pitesti=(320, 368), Rimnicu=(233, 410),
-    Sibiu=(207, 457), Timisoara=(94, 410), Urziceni=(456, 350),
-    Vaslui=(509, 444), Zerind=(108, 531))
 
 class SimpleProblemSolvingAgentProgram:
     """
