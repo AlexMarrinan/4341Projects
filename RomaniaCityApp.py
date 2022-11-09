@@ -2,8 +2,8 @@ import SimpleProblemSolvingAgent
 
 
 def main():
-    answer = input('Should I read read the romania map (Y/N): ')
-    if answer == 'Y':
+    answer = input('Should I read read the romania map (Yes/No): ')
+    if answer == 'Yes':
         map = create_map().nodes()
         print(map)
         while (True):
@@ -20,13 +20,22 @@ def main():
             elif not map.__contains__(city2):
                 print(f"{city2} is not on the map. Please enter valid cities")
             else:
-                find_path()
-                break;
+                find_path(city1, city2)
+                answer = input(f'Would you like to find the optimal path between any 2 cities again? (Yes/No): ')
+                if answer != 'Yes':
+                    print("Thank You for Using Our App")
+                    break;
     else:
-        pass
+        print("Thank You for Using Our App")
 
-def find_path():
-    print("Valid Cities")
+def find_path(city1,city2):
+    print("Best-First Search")
+    print("\t Cost: ")
+    print("\t Cities:")
+    print("A* Search")
+    print("\t Cost: ")
+    print("\t Cities:")
+
 def create_map():
     romania_map = SimpleProblemSolvingAgent.UndirectedGraph(dict(
         Arad=dict(Zerind=75, Sibiu=140, Timisoara=118),
