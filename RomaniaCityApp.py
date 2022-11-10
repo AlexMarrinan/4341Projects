@@ -1,5 +1,6 @@
 import SimpleProblemSolvingAgent
 import search
+from Problem import Problem
 
 
 def main():
@@ -7,7 +8,6 @@ def main():
     answer = 'Yes'
     if answer == 'Yes':
         map = create_map('romania_map')
-        print(map.nodes())
         while (True):
             # city1 = input('Please enter city 1: ')
             # city2 = input('Please enter city 2: ')
@@ -32,11 +32,12 @@ def main():
 def find_path(city1, city2, map):
     agent = SimpleProblemSolvingAgent.SimpleProblemSolvingAgentProgram(city1)
     agent.seq = map
-    print(agent.state)
-    problem = search.Problem(city1, city2)
-    # agent.__dict__=map;
+    problem = Problem(city1, city2)
     bfsCost = 0
-    # problem.path_cost(bfsCost,city1,,city2)
+    pathDistance = 0
+    estimateToGoal = problem.value(city2)
+    print(search.best_first_graph_search(problem, estimateToGoal+pathDistance, agent))
+    # problem.path_cost(bfsCost,city1,city2)
     print("Best-First Search")
     print(f"\t Cost: {bfsCost}")
     print("\t Cities:")
@@ -52,6 +53,8 @@ def create_map(filepath):
     for i in file.readlines():
         vals = i.split()
         graph.connect(vals[0], vals[1], vals[2])
+
+    print(graph.graph_dict)
     return graph
 
 
