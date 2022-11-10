@@ -1,6 +1,6 @@
 import SimpleProblemSolvingAgent
 import search
-from Problem import Problem
+from Problem import *
 
 
 def main():
@@ -41,7 +41,7 @@ def main():
 def find_path(city1, city2, map):
     agent = SimpleProblemSolvingAgent.SimpleProblemSolvingAgentProgram(city1)
     agent.seq = map
-    problem = Problem(city1, city2)
+    problem = GraphProblem(city1, city2, map)
     bfsCost = 0
     pathDistance = 0
     #estimateToGoal = problem.value(city2)
