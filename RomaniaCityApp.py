@@ -1,65 +1,60 @@
 import SimpleProblemSolvingAgent
+import search
 
 
 def main():
-    answer = input('Should I read read the romania map (Yes/No): ')
+    # answer = input('Should I read the romania map (Yes/No): ')
+    answer = 'Yes'
     if answer == 'Yes':
-        map = create_map().nodes()
-        print(map)
+        map = create_map('romania_map')
+        print(map.nodes())
         while (True):
-            city1 = input('Please enter city 1: ')
-            city2 = input('Please enter city 2: ')
-            #city1='Arad'
-            #city2 = 'Iasi'
-            #print(map.index(city1))
-            #print(map.index(city2))
+            # city1 = input('Please enter city 1: ')
+            # city2 = input('Please enter city 2: ')
+            city1 = 'Arad'
+            city2 = 'Bucharest'
             if city1 == city2:
                 print("The cities you entered are the same. Please enter different cities.")
-            elif not map.__contains__(city1):
+            elif not map.nodes().__contains__(city1):
                 print(f"{city1} is not on the map. Please enter valid cities")
-            elif not map.__contains__(city2):
+            elif not map.nodes().__contains__(city2):
                 print(f"{city2} is not on the map. Please enter valid cities")
             else:
-                find_path(city1, city2)
+                find_path(city1, city2, map)
                 answer = input(f'Would you like to find the optimal path between any 2 cities again? (Yes/No): ')
                 if answer != 'Yes':
                     print("Thank You for Using Our App")
-                    break;
+                    break
     else:
         print("Thank You for Using Our App")
 
-def find_path(city1,city2):
+
+def find_path(city1, city2, map):
+    agent = SimpleProblemSolvingAgent.SimpleProblemSolvingAgentProgram()
+    agent.__init__(city1)
+    agent.seq = map
+    print(agent.state)
+    problem = search.Problem(city1, city2)
+    # agent.__dict__=map;
+    bfsCost = 0
+    # problem.path_cost(bfsCost,city1,,city2)
     print("Best-First Search")
-    print("\t Cost: ")
+    print(f"\t Cost: {bfsCost}")
     print("\t Cities:")
     print("A* Search")
     print("\t Cost: ")
     print("\t Cities:")
 
-def create_map():
-    romania_map = SimpleProblemSolvingAgent.UndirectedGraph(dict(
-        Arad=dict(Zerind=75, Sibiu=140, Timisoara=118),
-        Bucharest=dict(Urziceni=85, Pitesti=101, Giurgiu=90, Fagaras=211),
-        Craiova=dict(Drobeta=120, Rimnicu=146, Pitesti=138),
-        Drobeta=dict(Mehadia=75),
-        Eforie=dict(Hirsova=86),
-        Fagaras=dict(Sibiu=99),
-        Hirsova=dict(Urziceni=98),
-        Iasi=dict(Vaslui=92, Neamt=87),
-        Lugoj=dict(Timisoara=111, Mehadia=70),
-        Oradea=dict(Zerind=71, Sibiu=151),
-        Pitesti=dict(Rimnicu=97),
-        Rimnicu=dict(Sibiu=80),
-        Urziceni=dict(Vaslui=142)))
-    romania_map.locations = dict(
-        Arad=(91, 492), Bucharest=(400, 327), Craiova=(253, 288),
-        Drobeta=(165, 299), Eforie=(562, 293), Fagaras=(305, 449),
-        Giurgiu=(375, 270), Hirsova=(534, 350), Iasi=(473, 506),
-        Lugoj=(165, 379), Mehadia=(168, 339), Neamt=(406, 537),
-        Oradea=(131, 571), Pitesti=(320, 368), Rimnicu=(233, 410),
-        Sibiu=(207, 457), Timisoara=(94, 410), Urziceni=(456, 350),
-        Vaslui=(509, 444), Zerind=(108, 531))
-    return romania_map
+
+def create_map(filepath):
+    graph = search.Graph()
+
+    file = open(filepath)
+    graph.make_undirected()
+    for i in file.readlines():
+        vals = i.split()
+        graph.connect(vals[0], vals[1], vals[2])
+    return graph
 
 
 if __name__ == "__main__":
