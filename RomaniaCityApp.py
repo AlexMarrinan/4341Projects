@@ -30,8 +30,7 @@ def main():
 
 
 def find_path(city1, city2, map):
-    agent = SimpleProblemSolvingAgent.SimpleProblemSolvingAgentProgram()
-    agent.__init__(city1)
+    agent = SimpleProblemSolvingAgent.SimpleProblemSolvingAgentProgram(city1)
     agent.seq = map
     print(agent.state)
     problem = search.Problem(city1, city2)
@@ -48,7 +47,6 @@ def find_path(city1, city2, map):
 
 def create_map(filepath):
     graph = search.Graph()
-
     file = open(filepath)
     graph.make_undirected()
     for i in file.readlines():
