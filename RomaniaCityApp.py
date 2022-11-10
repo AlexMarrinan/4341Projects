@@ -35,8 +35,8 @@ def find_path(city1, city2, map):
     problem = Problem(city1, city2)
     bfsCost = 0
     pathDistance = 0
-    estimateToGoal = problem.value(city2)
-    print(search.best_first_graph_search(problem, estimateToGoal+pathDistance, agent))
+    #estimateToGoal = problem.value(city2)
+    #print(search.best_first_graph_search(problem, estimateToGoal+pathDistance, agent))
     # problem.path_cost(bfsCost,city1,city2)
     print("Best-First Search")
     print(f"\t Cost: {bfsCost}")
