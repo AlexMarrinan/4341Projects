@@ -16,12 +16,12 @@ def main():
         Oradea=(131, 571), Pitesti=(320, 368), Rimnicu=(233, 410),
         Sibiu=(207, 457), Timisoara=(94, 410), Urziceni=(456, 350),
         Vaslui=(509, 444), Zerind=(108, 531))
-        print(map.locations["Arad"])
+        #print(map.locations["Arad"])
         while (True):
             # city1 = input('Please enter city 1: ')
             # city2 = input('Please enter city 2: ')
             city1 = 'Arad'
-            city2 = 'Bucharest'
+            city2 = 'Sibiu'
             if city1 == city2:
                 print("The cities you entered are the same. Please enter different cities.")
             elif not map.nodes().__contains__(city1):
@@ -40,15 +40,18 @@ def main():
 
 def find_path(city1, city2, map):
     agent = SimpleProblemSolvingAgent.SimpleProblemSolvingAgentProgram(city1)
-    agent.seq = map
     problem = GraphProblem(city1, city2, map)
-    bfsCost = 0
+
+    path = agent.search(problem)
+
+    print(path)
+
     pathDistance = 0
     #estimateToGoal = problem.value(city2)
     #print(search.best_first_graph_search(problem, estimateToGoal+pathDistance, agent))
     # problem.path_cost(bfsCost,city1,city2)
     print("Best-First Search")
-    print(f"\t Cost: {bfsCost}")
+    #print(f"\t Cost: {bfsCost}")
     print("\t Cities:")
     print("A* Search")
     print("\t Cost: ")
@@ -58,10 +61,10 @@ def find_path(city1, city2, map):
 def create_map(filepath):
     graph = search.Graph()
     file = open(filepath)
-    graph.make_undirected()
     for i in file.readlines():
         vals = i.split()
-        graph.connect(vals[0], vals[1], vals[2])
+        graph.connect1(vals[0], vals[1], int(vals[2]))
+        #graph.connect1(vals[1], vals[0], int(vals[2]))
 
     print(graph.graph_dict)
     return graph

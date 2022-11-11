@@ -1,3 +1,5 @@
+import search
+
 class SimpleProblemSolvingAgentProgram:
     """
     [Figure 3.1]
@@ -24,7 +26,7 @@ class SimpleProblemSolvingAgentProgram:
         return self.seq.pop(0)
 
     def update_state(self, state, percept):
-        raise NotImplementedError
+        self.state = percept
 
     def formulate_goal(self, state):
         raise NotImplementedError
@@ -33,4 +35,4 @@ class SimpleProblemSolvingAgentProgram:
         raise NotImplementedError
 
     def search(self, problem):
-        raise NotImplementedError
+        return search.astar_search(problem)
