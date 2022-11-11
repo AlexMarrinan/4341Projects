@@ -21,7 +21,7 @@ def main():
             # city1 = input('Please enter city 1: ')
             # city2 = input('Please enter city 2: ')
             city1 = 'Sibiu'
-            city2 = 'Sibiu'
+            city2 = 'Zerind'
             if city1 == city2:
                 print("The cities you entered are the same. Please enter different cities.")
             elif not map.nodes().__contains__(city1):
@@ -43,8 +43,10 @@ def find_path(city1, city2, map):
     problem = GraphProblem(city1, city2, map)
 
     path = agent.search(problem)
-
-    print(path)
+    pathList = path.path();
+    for n in pathList:
+        print(n.state, end=", ")
+    print()
 
     pathDistance = 0
     #estimateToGoal = problem.value(city2)
