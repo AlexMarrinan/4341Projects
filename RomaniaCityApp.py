@@ -16,12 +16,12 @@ def main():
         Oradea=(131, 571), Pitesti=(320, 368), Rimnicu=(233, 410),
         Sibiu=(207, 457), Timisoara=(94, 410), Urziceni=(456, 350),
         Vaslui=(509, 444), Zerind=(108, 531))
-        #print(map.locations["Arad"])
+        print(map.nodes())
         while (True):
-            # city1 = input('Please enter city 1: ')
-            # city2 = input('Please enter city 2: ')
-            city1 = 'Sibiu'
-            city2 = 'Zerind'
+            city1 = input('Please enter city 1: ')
+            city2 = input('Please enter city 2: ')
+            #city1 = 'Sibiu'
+            #city2 = 'Zerind'
             if city1 == city2:
                 print("The cities you entered are the same. Please enter different cities.")
             elif not map.nodes().__contains__(city1):
@@ -31,7 +31,7 @@ def main():
             else:
                 find_path(city1, city2, map)
                 answer = input(f'Would you like to find the optimal path between any 2 cities again? (Yes/No): ')
-                if answer != 'Yes':
+                if answer.lower() != 'yes':
                     print("Thank You for Using Our App")
                     break
     else:
@@ -51,7 +51,7 @@ def find_path(city1, city2, map):
     pathDistance = 0
     #estimateToGoal = problem.value(city2)
     #print(search.best_first_graph_search(problem, estimateToGoal+pathDistance, agent))
-    # problem.path_cost(bfsCost,city1,city2)
+    #problem.path_cost(bfsCost,city1,city2)
     print("Best-First Search")
     #print(f"\t Cost: {bfsCost}")
     print("\t Cities:")
@@ -68,7 +68,7 @@ def create_map(filepath):
         graph.connect1(vals[0], vals[1], int(vals[2]))
         graph.connect1(vals[1], vals[0], int(vals[2]))
 
-    print(graph.graph_dict)
+    #print(graph.graph_dict)
     return graph
 
 
