@@ -20,7 +20,7 @@ def main():
         while (True):
             # city1 = input('Please enter city 1: ')
             # city2 = input('Please enter city 2: ')
-            city1 = 'Arad'
+            city1 = 'Sibiu'
             city2 = 'Sibiu'
             if city1 == city2:
                 print("The cities you entered are the same. Please enter different cities.")
@@ -64,7 +64,7 @@ def create_map(filepath):
     for i in file.readlines():
         vals = i.split()
         graph.connect1(vals[0], vals[1], int(vals[2]))
-        #graph.connect1(vals[1], vals[0], int(vals[2]))
+        graph.connect1(vals[1], vals[0], int(vals[2]))
 
     print(graph.graph_dict)
     return graph
