@@ -43,21 +43,15 @@ def find_path(city1, city2, map):
     problem = GraphProblem(city1, city2, map)
 
     path = agent.search(problem)
-    pathList = path.path();
+    pathList = path.path()
+
+    print("A* Search")
+    print("\t Cost: ")
+
+    print("\t Cities: ")
     for n in pathList:
         print(n.state, end=", ")
     print()
-
-    pathDistance = 0
-    #estimateToGoal = problem.value(city2)
-    #print(search.best_first_graph_search(problem, estimateToGoal+pathDistance, agent))
-    #problem.path_cost(bfsCost,city1,city2)
-    print("Best-First Search")
-    #print(f"\t Cost: {bfsCost}")
-    print("\t Cities:")
-    print("A* Search")
-    print("\t Cost: ")
-    print("\t Cities:")
 
 
 def create_map(filepath):
