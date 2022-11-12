@@ -4,8 +4,7 @@ from Problem import *
 
 
 def main():
-    # answer = input('Should I read the romania map (Yes/No): ')
-    answer = 'Yes'
+    answer = input('Should I read the romania map (Yes/No): ')
     if answer == 'Yes':
         map = create_map('romania_map')
         map.locations = dict(
