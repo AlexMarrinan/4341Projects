@@ -4,9 +4,13 @@ from Problem import *
 
 
 def main():
-    answer = input('Should I read the romania map (Yes/No): ')
-    if answer == 'Yes':
-        map = create_map('romania_map')
+    answer = input('What map file should we read?: ')
+    if answer != '':
+        map = create_map(answer)
+        while map == None:
+            answer = input('What map file should we read?: ')
+            map = create_map(answer)
+        print(f"Loading from {answer} ...")
         map.locations = dict(
         Arad=(91, 492), Bucharest=(400, 327), Craiova=(253, 288),
         Drobeta=(165, 299), Eforie=(562, 293), Fagaras=(305, 449),
@@ -57,7 +61,11 @@ def find_path(city1, city2, map):
 
 def create_map(filepath):
     graph = search.Graph()
-    file = open(filepath)
+    try:
+        file = open(filepath)
+    except: 
+        print(f"File {filepath} not found!")
+        return None
     for i in file.readlines():
         vals = i.split()
         graph.connect1(vals[0], vals[1], int(vals[2]))
