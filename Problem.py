@@ -64,6 +64,7 @@ class GraphProblem(Problem):
     def __init__(self, initial, goal, graph):
         super().__init__(initial, goal)
         self.graph = graph
+        cost=0;
 
     def actions(self, A):
         """The actions at a graph node are just its neighbors."""

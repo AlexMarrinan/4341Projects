@@ -44,6 +44,7 @@ class Node:
         node, path_back = self, []
         while node:
             path_back.append(node)
+
             node = node.parent
         return list(reversed(path_back))
 

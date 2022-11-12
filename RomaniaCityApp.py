@@ -44,9 +44,11 @@ def find_path(city1, city2, map):
 
     path = agent.search(problem)
     pathList = path.path()
+    #cost=problem.path_cost()
+    path.path_cost
 
     print("A* Search")
-    print("\t Cost: ")
+    print(f"\t Cost: {path.path_cost}")
 
     print("\t Cities: ")
     for n in pathList:
