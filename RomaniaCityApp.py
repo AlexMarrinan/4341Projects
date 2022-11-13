@@ -6,7 +6,7 @@ from Problem import *
 
 def main():
     answer = input('Would you like to read the romainia map? (Yes/No):  ')
-    if answer == 'Yes':
+    if answer.lower() == 'yes':
         map = create_map("romania_map.json")
         print(f"Loading from {answer} ...")
         while (True):
