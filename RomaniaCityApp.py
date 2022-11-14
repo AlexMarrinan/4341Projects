@@ -8,7 +8,7 @@ def main():
     answer = input('Would you like to read the romainia map? (Yes/No):  ')
     if answer.lower() == 'yes':
         map = create_map("romania_map.json")
-        print(f"Loading from {answer} ...")
+        print(f"Loading from romania_map ...")
         while (True):
             city1 = input('Please enter city 1: ')
             city2 = input('Please enter city 2: ')
