@@ -3,7 +3,7 @@ import search
 import json
 from Problem import *
 
-
+'''Asks for user input to read the romania map, then asks for two cities in the map. Prints the optimal path and it's cost, then asks to repeat.'''
 def main():
     answer = input('Would you like to read the romainia map? (Yes/No):  ')
     if answer.lower() == 'yes':
