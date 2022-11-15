@@ -36,6 +36,12 @@ def find_path(city1, city2, map):
     path = agent.search(problem)
     pathList = path.path()
 
+    print("Best-First Search")
+    print(f"\t Cost: {0}")
+
+    print("\t Cities: ")
+
+
     print("A* Search")
     print(f"\t Cost: {path.path_cost}")
 
@@ -43,6 +49,18 @@ def find_path(city1, city2, map):
     for n in pathList:
         print(n.state, end=", ")
     print()
+
+    print("Hill Climbing Search")
+    print(f"\t Cost: {0}")
+
+    print("\t Cities: ")
+
+    print("Simulated Annealing")
+    print(f"\t Cost: {0}")
+
+    print("\t Cities: ")
+
+
 
 
 '''Reads values in file and translates that to map links'''
