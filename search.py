@@ -3,7 +3,7 @@ import sys
 
 import numpy as np
 from sympy.stats.rv import probability
-import utils as u
+import utils
 from Graph import Graph
 from Node import Node
 from PriorityQueue import PriorityQueue
@@ -86,7 +86,7 @@ def hill_climbing(problem):
         neighbors = current.expand(problem)
         if not neighbors:
             break
-        neighbor = u.argmax_random_tie(neighbors, key=lambda node: problem.value(node.state))
+        neighbor = utils.argmax_random_tie(neighbors, key=lambda node: problem.value(node.state))
         if problem.value(neighbor.state) <= problem.value(current.state):
             break
         current = neighbor

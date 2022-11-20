@@ -1,5 +1,16 @@
 import search
 
+
+def print_results(str, results):
+    print(str)
+    print(f"\t Cost: {results.path_cost}")
+
+    print("\t Cities: ")
+    for n in results.path():
+        print(n.state, end=", ")
+    print()
+
+
 class SimpleProblemSolvingAgentProgram:
     """
     [Figure 3.1]
@@ -35,4 +46,13 @@ class SimpleProblemSolvingAgentProgram:
         raise NotImplementedError
 
     def search(self, problem):
-        return search.astar_search(problem)
+        bfs=search.best_first_graph_search(problem,lambda n: problem.h(n))
+        astar=search.astar_search(problem)
+        #hill=search.hill_climbing(problem)
+        #sa=search.simulated_annealing(problem)
+
+        print_results('Best-First Search',bfs)
+        print_results('A* Search', astar)
+        #print_results('Hill climbing Search', hill)
+        #print_results('Simulated annealing', sa)
+
