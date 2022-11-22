@@ -1,6 +1,5 @@
 import search
 
-
 def print_results(str, results):
     print(str)
     print(f"\t Cost: {results.path_cost}")
@@ -9,7 +8,6 @@ def print_results(str, results):
     for n in results.path():
         print(n.state, end=", ")
     print()
-
 
 class SimpleProblemSolvingAgentProgram:
     """

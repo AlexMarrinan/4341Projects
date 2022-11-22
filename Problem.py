@@ -85,8 +85,7 @@ class GraphProblem(Problem):
             m = min(m, local_min)
 
         return m
-    def value(self, state):
-        return self.path_cost * -1
+
     def h(self, node):
         """h function is straight-line distance from a node's state to goal."""
         locs = getattr(self.graph, 'locations', None)
@@ -101,4 +100,5 @@ class GraphProblem(Problem):
     #Takes in node
     #Returns int
     def value(self, state):
-        return -1*self.h(state)
+        #return -1*self.h(state)
+        return -1 * self.path_cost
