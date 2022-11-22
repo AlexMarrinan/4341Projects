@@ -11,10 +11,11 @@ def main():
         game = TicTacToeClass(int(h), int(v), int(k))
         while True:
             state = game.initial
+            searchAlg = input("What search alg should we use? Minmax or AlphaBeta?: ")
+            if searchAlg.lower() == 'minmax':print('AI playing with Minmax Decision')
+            else: print('AI playing with Alpha-Beta Search')
             while (not game.terminal_test(state)):
-                searchAlg=input("What search alg should we use? Minmax or AlphaBeta?: ")
                 if searchAlg.lower() == 'minmax':
-                    print('AI playing with Minmax Decision')
                     move = minmax_decision(state, game)
                 else:
                     print('AI playing with Alpha-Beta Search')
