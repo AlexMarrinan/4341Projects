@@ -1,3 +1,4 @@
+from Node import Node
 from search import is_in
 import numpy as np
 
@@ -48,7 +49,6 @@ class Problem:
     def value(self, state):
         """For optimization problems, each state has a value. Hill Climbing
         and related algorithms try to maximize this value."""
-
         raise NotImplementedError
 
 def distance(a, b):
@@ -64,7 +64,7 @@ class GraphProblem(Problem):
     def __init__(self, initial, goal, graph):
         super().__init__(initial, goal)
         self.graph = graph
-        cost=0;
+        self.cost=0;
 
     def actions(self, A):
         """The actions at a graph node are just its neighbors."""
@@ -96,3 +96,8 @@ class GraphProblem(Problem):
             return int(distance(locs[node.state], locs[self.goal]))
         else:
             return np.inf
+
+    #Takes in node
+    #Returns int
+    def value(self, state):
+        return -1*self.h(state)
