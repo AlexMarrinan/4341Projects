@@ -17,6 +17,14 @@ def main():
         game = TicTacToeClass(int(h), int(v), int(k))
         while True:
             state = game.initial
+            while (not game.terminal_test(state)):
+                searchAlg=input("What search alg should we use? Minmax or AlphaBeta?: ")
+                if searchAlg.lower() == 'minmax':
+                    print('AI playing with Minmax Decision')
+                    move = minmax_decision(state, game)
+                else:
+                    print('AI playing with Alpha-Beta Search')
+                    move = alpha_beta_search(state, game)
             while not game.terminal_test(state):
                 if(turn %2 == 0):
                     if (searchType == 0):
