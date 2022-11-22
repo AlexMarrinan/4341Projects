@@ -5,9 +5,9 @@ from games4e import *
 def main():
     #answer = input("Would you like to run TicTacToe: ")
     if True:#(answer.lower() == 'yes'):
-        h = 5 #input("Please insert h: ")
-        v = 5 ##input("Please insert v: ")
-        k = 5 #input("Please insert k: ")
+        h = 3 #input("Please insert h: ")
+        v = 3 ##input("Please insert v: ")
+        k = 3 #input("Please insert k: ")
 
         first = int(input("Do you want to go first? (1 - yes, 0 - no) "))
 
@@ -19,6 +19,8 @@ def main():
                 print('AI playing with Minmax Decision')
             else:
                 print('AI playing with Alpha-Beta Search')
+            
+            print(game.display(state))
             while not game.terminal_test(state):
                 if(first %2 == 0):
                     print("AI move...")
