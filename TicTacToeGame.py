@@ -38,7 +38,7 @@ def main():
                 print(move)
                 state = game.result(state, move)
                 print(game.display(state))
-                move += 1
+                turn += 1
 
             answer = input("Would you like to run TicTacToe again? ")
             if (answer.lower() != 'yes'):
