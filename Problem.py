@@ -100,5 +100,4 @@ class GraphProblem(Problem):
     #Takes in node
     #Returns int
     def value(self, state):
-        #return -1*self.h(state)
-        return -1 * self.path_cost
+        return self.h(state)

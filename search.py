@@ -2,7 +2,6 @@ import random
 import sys
 
 import numpy as np
-from sympy.stats.rv import probability
 import utils
 from Graph import Graph
 from Node import Node
@@ -107,8 +106,13 @@ def simulated_annealing(problem, schedule=exp_schedule()):
         if not neighbors:
             return current
         next_choice = random.choice(neighbors)
-        delta_e = problem.value(next_choice) - problem.value(current)
-        if delta_e > 0 or probability(np.exp(delta_e / T)):
+        print(type(next_choice))
+        delta_e = problem.h(next_choice) - problem.h(current)
+        print(type(T))
+        print(type(delta_e))
+        print(np.exp(delta_e / T))
+        #print(probability(np.exp(delta_e / T)))
+        if delta_e > 0 or utils.probability(np.exp(delta_e / T)):
             current = next_choice
 
 
@@ -127,6 +131,6 @@ def simulated_annealing_full(problem, schedule=exp_schedule()):
             return current.state
         next_choice = random.choice(neighbors)
         print(type(next_choice))
-        delta_e = problem.value(next_choice) - problem.value(current)
-        if delta_e > 0 or probability(np.exp(delta_e / T)):
+        delta_e = problem.h(next_choice) - problem.h(current)
+        if delta_e > 0 or utils.probability(np.exp(delta_e / T)):
             current = next_choice

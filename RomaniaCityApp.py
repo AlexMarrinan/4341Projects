@@ -5,16 +5,16 @@ from Problem import *
 
 '''Asks for user input to read the romania map, then asks for two cities in the map. Prints the optimal path and it's cost, then asks to repeat.'''
 def main():
-    #answer = input('Would you like to read the romainia map? (Yes/No):  ')
-    answer='yes'
+    answer = input('Would you like to read the romainia map? (Yes/No):  ')
+    #answer='yes'
     if answer.lower() == 'yes':
         map = create_map("romania_map.json")
         print(f"Loading from romania_map ...")
         while (True):
-            #city1 = input('Please enter city 1: ')
-            #city2 = input('Please enter city 2: ')
-            city1='Arad'
-            city2='Neamt'
+            city1 = input('Please enter city 1: ')
+            city2 = input('Please enter city 2: ')
+            #city1='Arad'
+            #city2='Neamt'
             if city1 == city2:
                 print("The cities you entered are the same. Please enter different cities.")
             elif not map.nodes().__contains__(city1):
