@@ -31,7 +31,7 @@ def main():
                 else:
                     x = int(input("Please enter x coordinate of your move: "))
                     y = int(input("Please enter y coordinate of your move: "))
-                    move = x,y
+                    move = y,x
                 print(move)
                 state = game.result(state, move)
                 print(game.display(state))
