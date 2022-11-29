@@ -3,11 +3,11 @@ from games4e import *
 
 
 def main():
-    #answer = input("Would you like to run TicTacToe: ")
-    if True:#(answer.lower() == 'yes'):
-        h = 3 #input("Please insert h: ")
-        v = 3 ##input("Please insert v: ")
-        k = 3 #input("Please insert k: ")
+    answer = input("Would you like to run TicTacToe: ")
+    if (answer.lower() == 'yes'):
+        h = input("Please insert h: ")
+        v = input("Please insert v: ")
+        k = input("Please insert k: ")
 
         first = int(input("Do you want to go first? (1 - yes, 0 - no) "))
 
@@ -41,17 +41,6 @@ def main():
             if (answer.lower() != 'yes'):
                 print('Thank You for Playing Our Game')
                 break
-
-
-def mainAgain():
-    game = TicTacToeClass(3, 3, 3)
-    state = game.initial
-    print(game.display(state))
-
-    move = minmax_decision(game.initial, game)
-    print(move)
-    state = game.result(state, move)
-    print(game.display(state))
 
 if __name__=="__main__":
     main()
