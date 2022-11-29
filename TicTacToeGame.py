@@ -20,7 +20,7 @@ def main():
             else:
                 print('AI playing with Alpha-Beta Search')
             
-            print(game.display(state))
+            game.display(state)
             while not game.terminal_test(state):
                 if(first %2 == 0):
                     print("AI move...")
@@ -34,7 +34,7 @@ def main():
                     move = y,x
                 print(move)
                 state = game.result(state, move)
-                print(game.display(state))
+                game.display(state)
                 first += 1
 
             answer = input("Would you like to run TicTacToe again? ")
