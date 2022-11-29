@@ -47,7 +47,7 @@ class SimpleProblemSolvingAgentProgram:
         bfs=search.best_first_graph_search(problem,lambda n: problem.h(n))
         astar=search.astar_search(problem)
         hill=search.hill_climbing(problem)
-        sa=search.simulated_annealing(problem, search.exp_schedule())
+        sa=search.simulated_annealing_full(problem, search.exp_schedule())
 
         print_results('Best-First Search',bfs)
         print_results('A* Search', astar)

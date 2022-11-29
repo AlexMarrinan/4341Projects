@@ -100,4 +100,4 @@ class GraphProblem(Problem):
     #Takes in node
     #Returns int
     def value(self, state):
-        return self.h(state)
+        return -1*self.h(state)
